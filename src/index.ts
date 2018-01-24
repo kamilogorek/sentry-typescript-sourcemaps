@@ -1,4 +1,4 @@
-import { Foo } from "./foo";
+import { Foo } from "./common/foo";
 
 function bar() {
   Foo();

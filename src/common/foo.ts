@@ -1,6 +1,6 @@
-import { SentryReporter } from "./error";
+import { SentryReporter } from "../lib/error";
 
-const reporter = new SentryReporter("__YOUR_DSN__");
+const reporter = new SentryReporter("__DSN__");
 
 function Foo() {
   reporter.notify(new Error("foo"), {

@@ -1,13 +1,15 @@
 import { Client, DataCallback } from "raven";
 import * as path from "path";
 
+const cwd = process.cwd();
+
 const dataCallback: DataCallback = data => {
   const stacktrace = data.exception && data.exception[0].stacktrace;
 
   if (stacktrace && stacktrace.frames) {
     stacktrace.frames.forEach((frame: any) => {
       if (frame.filename.startsWith("/")) {
-        frame.filename = "app:///" + path.basename(frame.filename);
+        frame.filename = "app:///" + path.relative(cwd, frame.filename);
       }
     });
   }
