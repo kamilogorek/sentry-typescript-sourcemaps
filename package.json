@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "main": "webpack.config.js",
   "dependencies": {
-    "raven": "^2.3.0",
-    "ts-loader": "^3.3.0",
-    "typescript": "^2.6.2",
-    "webpack": "^3.10.0"
+    "@sentry/cli": "^1.47.1",
+    "@sentry/integrations": "^5.5.0",
+    "@sentry/node": "^5.5.0",
+    "@sentry/webpack-plugin": "^1.7.0",
+    "@types/node": "^12.6.8",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "webpack": "^4.38.0"
   },
   "scripts": {
-    "start": "export RELEASE=`date +%s`; webpack"
+    "build": "tsc --build tsconfig.json",
+    "upload": "sentry-cli releases new $RELEASE && sentry-cli releases files $RELEASE upload-sourcemaps './dist' && sentry-cli releases finalize $RELEASE"
   }
 }
